@@ -1,7 +1,7 @@
 ## Build the images with 2 tags - latest and $SHA
 docker build -t omkarsonawane/docker-multi-client:latest -t omkarsonawane/docker-multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t omkarsonawane/docker-multi-server:latest -t omkarsonawane/docker-multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t omkarsonawane/docker-multi-worker:latest -t omkarsonawane/docker-multi-worker:$SHA -f ./client/Dockerfile ./worker
+docker build -t omkarsonawane/docker-multi-worker:latest -t omkarsonawane/docker-multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 ## Push the images to docker hub
 docker push omkarsonawane/docker-multi-client:latest
@@ -12,7 +12,7 @@ docker push omkarsonawane/docker-multi-worker:latest
 docker push omkarsonawane/docker-multi-worker:$SHA
 
 ## apply k8s config files present under k8s dir
-kubctl apply -f k8s
+kubectl apply -f k8s
 
 ## set/apply $SHA tag images to k8s deployments
 kubectl set image deployments/client-deployment client=omkarsonawane/docker-multi-client:$SHA
