@@ -18,7 +18,7 @@ before_install:
   - gcloud config set project multi-k8s-269907
   - gcloud config set compute/zone asia-southeast1-a
   - gcloud container clusters get-credentials  checkpoint-multi-cluster	##gcloud container clusters get-credentials updates a kubeconfig file with appropriate credentials and endpoint information to point kubectl at a specific cluster in Google Kubernetes Engine.
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --stdin-password
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t omkarsonawane/docker-multi-client-test -f ./client/Dockerfile.dev ./client
 
 script:
