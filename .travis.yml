@@ -24,7 +24,6 @@ before_install:
 script:
   - docker run -e CI=tru omkarsonawane/docker-multi-client-test npm run test
 
-
 deploy:
   provider: script
   script: bash ./deploy.sh
